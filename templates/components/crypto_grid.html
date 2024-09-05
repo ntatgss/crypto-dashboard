@@ -1,0 +1,10 @@
+<div class="crypto-grid">
+    {% for coin in coins %}
+    <div class="crypto-card" id="card-{{ coin.id }}">
+        <h2>{{ coin.name }} ({{ coin.symbol.upper() }})</h2>
+        <p>Price: $<span class="price">{{ coin.current_price }}</span></p>
+        <p>24h Change: <span class="change">{{ coin.price_change_percentage_24h }}%</span></p>
+        <p>Market Cap: $<span class="market-cap">{{ coin.market_cap }}</span></p>
+    </div>
+    {% endfor %}
+</div>

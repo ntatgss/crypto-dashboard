@@ -1,0 +1,72 @@
+:root {
+    --bg-color: #f0f2f5;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --heading-color: #2c3e50;
+    --crypto-name-color: #3498db;
+    --market-cap-color: #7f8c8d;
+    --button-bg: #4CAF50;
+    --button-text: white;
+    --modal-bg: #fff;
+    --modal-text: #333;
+}
+
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --card-bg: #2c2c2c;
+    --card-shadow: rgba(255, 255, 255, 0.1);
+    --heading-color: #e0e0e0;
+    --crypto-name-color: #4dabf7;
+    --market-cap-color: #a0a0a0;
+    --button-bg: #45a049;
+    --button-text: #e0e0e0;
+    --modal-bg: #2c2c2c;
+    --modal-text: #e0e0e0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1 {
+    color: var(--heading-color);
+}
+
+/* Dark mode toggle switch styles */
+.mode-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.mode-toggle label {
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background: grey;
+    display: block;
+    border-radius: 25px;
+    position: relative;
+}
+
+.mode-toggle label:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 19px;
+    height: 19px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.mode-toggle input:checked + label {
+    background: #4CAF50;
+}
+
+.mode-toggle input:checked + label:after {
+    left: calc(100% - 3px);
+    transform: translateX(-100%);
+}

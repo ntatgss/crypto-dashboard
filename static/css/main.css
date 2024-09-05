@@ -1,0 +1,428 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-bg-color: #f0f0f0;
+    --header-bg-color: #e0e0e0;
+    --primary-color: #3498db;
+    --positive-color: #2ecc71;
+    --negative-color: #e74c3c;
+    --modal-bg-color: #ffffff;
+    --modal-text-color: #333333;
+}
+
+html[data-theme="dark"] {
+    --bg-color: #1e1e1e;
+    --text-color: #ffffff;
+    --card-bg-color: #2c2c2c;
+    --header-bg-color: #2c2c2c;
+    --primary-color: #3498db;
+    --positive-color: #2ecc71;
+    --negative-color: #e74c3c;
+    --modal-bg-color: #333333;
+    --modal-text-color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg-color);
+}
+
+.header-left, .header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    justify-content: flex-start;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+h1 {
+    flex: 2;
+    text-align: center;
+    margin: 0;
+}
+
+#settingsButton {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#settingsButton:hover {
+    opacity: 0.9;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider .sun,
+.slider .moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.slider .sun {
+    right: 8px;
+    opacity: 1;
+}
+
+.slider .moon {
+    left: 8px;
+    opacity: 0;
+}
+
+input:checked + .slider .sun {
+    opacity: 0;
+}
+
+input:checked + .slider .moon {
+    opacity: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: var(--modal-bg-color);
+    color: var(--modal-text-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#coinSelection {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+#coinSelection div {
+    margin-bottom: 10px;
+}
+
+#coinSelection label {
+    margin-left: 5px;
+}
+
+/* Ensure this doesn't conflict with your dark mode styles */
+html[data-theme="dark"] .modal-content {
+    background-color: #333;
+    color: #fff;
+}
+
+#coinSelection {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+#coinSelection div {
+    margin-bottom: 10px;
+}
+
+#coinSelection label {
+    margin-left: 5px;
+}
+
+#saveSettings, #closeSettings {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#saveSettings {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#closeSettings {
+    background-color: #ccc;
+    color: black;
+}
+
+.price-changed {
+    animation: flash 0.5s;
+}
+
+@keyframes flash {
+    0% { background-color: rgba(255, 255, 0, 0.5); }
+    100% { background-color: transparent; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .theme-switch-wrapper {
+        margin-top: 1rem;
+    }
+
+    .crypto-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@import 'modal.css';
+@import 'dark_mode.css';
+
+.crypto-card.outdated {
+    opacity: 0.7;
+}
+
+.crypto-card.error {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.outdated {
+    color: var(--negative-color);
+    font-weight: bold;
+}
+
+.crypto-card.fake-data {
+    background-color: rgba(255, 255, 0, 0.1);
+    border: 1px solid #ffd700;
+}
+
+.fake-data {
+    color: #ffa500;
+    font-weight: bold;
+}
+
+.status-label {
+    font-size: 0.8em;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.status-label.fake {
+    background-color: #ffd700;
+    color: #000;
+}
+
+.status-label.outdated {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.notification.warning {
+    background-color: #ffa500;
+}
+
+.notification.error {
+    background-color: #ff0000;
+}
+
+/* ... (keep existing styles) ... */
+
+.crypto-card .volume {
+    font-weight: bold;
+    color: #6c757d;  /* A muted color for volume */
+}
+
+/* ... (keep other styles) ... */
+
+@keyframes priceUp {
+    0% { background-color: rgba(0, 255, 0, 0.5); }
+    100% { background-color: transparent; }
+}
+
+@keyframes priceDown {
+    0% { background-color: rgba(255, 0, 0, 0.5); }
+    100% { background-color: transparent; }
+}
+
+.price-up {
+    animation: priceUp 1s ease-out;
+}
+
+.price-down {
+    animation: priceDown 1s ease-out;
+}
+
+.crypto-card .price {
+    transition: color 0.3s ease;
+}
+
+.crypto-card .change {
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.crypto-card .change.positive {
+    color: #28a745;
+}
+
+.crypto-card .change.negative {
+    color: #dc3545;
+}
+
+/* ... (keep other styles) ... */
+
+.crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.crypto-card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.crypto-card:hover {
+    transform: translateY(-5px);
+}
+
+.crypto-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.crypto-card p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.crypto-card .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.crypto-card .change {
+    font-weight: bold;
+}
+
+.crypto-card .change.positive {
+    color: var(--positive-color);
+}
+
+.crypto-card .change.negative {
+    color: var(--negative-color);
+}
+
+.crypto-card .market-cap,
+.crypto-card .volume {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* ... other styles ... */
