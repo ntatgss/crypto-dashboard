@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptocurrency Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-</head>
-<body>
-    {% include 'components/header.html' %}
-    <div class="container">
-        {% include 'components/crypto_grid.html' %}
-    </div>
-    {% include 'components/settings_modal.html' %}
+{% extends "base.html" %}
 
-    <script src="{{ url_for('static', filename='js/crypto_updates.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/dark_mode.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            refreshCryptoData();
-        });
-    </script>
-</body>
-</html>
+{% block content %}
+    <h1>Crypto Dashboard</h1>
+    <button onclick="refreshCryptoData()">Refresh Data</button>
+    
+    <div id="cryptoContainer">
+        <div class="crypto-grid">
+            <!-- Crypto cards will be dynamically inserted here -->
+        </div>
+    </div>
+{% endblock %}

@@ -2,6 +2,37 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2023-09-06
+### Added
+- Implemented user authentication system with login and registration functionality
+- Added user-specific coin selection and persistence
+- Integrated Flask-Login for user session management
+- Created new routes for login, logout, and registration
+- Implemented rate limiting decorator for API endpoints
+- Added SocketIO events for real-time updates of selected coins
+- Created a background task for periodic data updates
+- Implemented a global TOP_COINS list with periodic updates
+- Added new components: header and settings modal
+- Created a Config class for centralized configuration management
+- Implemented user settings management (get_user_coins, update_user_coins)
+- Added Flask extensions management (SQLAlchemy, Migrate, LoginManager, SocketIO)
+
+### Changed
+- Refactored routes to use Blueprint
+- Updated the dashboard to show user-specific selected coins
+- Improved error handling in both frontend and backend
+- Enhanced the settings modal to use the global TOP_COINS list
+- Updated the header component to include login/logout links
+- Moved database and SocketIO initialization to extensions.py
+
+### Fixed
+- Resolved issues with user authentication and coin selection persistence
+- Improved error handling for API requests and WebSocket connections
+
+### Security
+- Implemented proper password hashing for user accounts
+- Added login required decorators to protect routes
+
 ## [0.5.0] - 2023-09-05
 ### Added
 - Implemented fallback data functionality
